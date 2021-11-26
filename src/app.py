@@ -1,4 +1,4 @@
-import logging
+import loggings
 from src.router.status_router import router as status_router
 from src.router.index_router import router as index_router
 from fastapi import FastAPI
