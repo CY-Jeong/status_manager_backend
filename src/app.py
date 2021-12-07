@@ -3,6 +3,9 @@ from src.router.status_router import router as status_router
 from src.router.index_router import router as index_router
 from fastapi import FastAPI
 
+logging.config.fileConfig("logging.conf", disable_existing_loggers=False)
+
+
 app = FastAPI(
     title="Status Manager",
     description="OS, GPU, MEM Status Manger",
