@@ -5,6 +5,7 @@ import os
 from src.router.status_router import router as status_router
 from src.router.index_router import router as index_router
 from fastapi import FastAPI
+from src.security.authenticate import validate_api_key
 
 logging.config.fileConfig("logging.conf", disable_existing_loggers=False)
 logger = logging.getLogger('status_manager')
@@ -21,6 +22,6 @@ app = FastAPI(
 app.include_router(
     index_router,
     prefix="/",
-    dependencies=[Security()]
+    dependencies=[Security(validate_api_key, scopes=["openid"])]
 
 )
