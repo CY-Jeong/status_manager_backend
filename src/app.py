@@ -25,3 +25,11 @@ app.include_router(
     dependencies=[Security(validate_api_key, scopes=["openid"])]
 
 )
+
+@app.on_event("startup")
+async def on_app_start():
+    pass
+
+@app.on_event("shutdown")
+async def on_app_shutdown():
+    pass
