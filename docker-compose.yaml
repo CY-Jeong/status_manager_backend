@@ -1,9 +1,22 @@
 version: "3.5"
-
 services:
-  status_web:
-    container_name: status_web
-    
+  status-manager:
+    image: status-manager
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: status-manager
+    tty: true
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/usr/src/app
+    entrypoint: ["sh", "-c"]
+    command:
+      - uvicorn
+      - src.app:app
+      - --host
+      - 0.0.0.0
+      - --port 8080
+
+    

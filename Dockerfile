@@ -1,7 +1,14 @@
-FROM python:3.8-slim
+FROM python:3.10-slim
 
-RUN pip install "fastapi[all]"
+WORKDIR /usr/src/app/
 
-COPY . /app
+COPY . .
+ 
+RUN apt-get update && \
+    python -m pip install --upgrade pip && \
+    pip install -r requirements.txt
 
-CMD tail -f /dev/null
+ENV TZ=Asia/Seoul
+ENV PORT="8080"
+
+
